@@ -1,8 +1,7 @@
 import { app } from './app';
-
-const PORT = 3333;
+import { env } from './config/env';
 
 // INICIAR O SERVIDOR \\
-app.listen(PORT, () => {
-    console.log(`🚀 http://localhost:${PORT}`);
+app.listen(env.PORT, () => {
+    console.log(`🚀 http://localhost:${env.PORT} [${env.NODE_ENV}]`);
 });
