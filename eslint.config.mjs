@@ -27,4 +27,13 @@ export default defineConfig(
             'simple-import-sort/exports': 'error',
         },
     },
+    {
+        rules: {
+            // PREFIXO _ = "SEI QUE NÃO ESTOU USANDO É PROPOSITAL"
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                { argsIgnorePattern: '^_' },
+            ],
+        },
+    },
 );
