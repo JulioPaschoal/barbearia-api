@@ -21,6 +21,10 @@ app.get('/teste/app-error', () => {
     throw new AppError('Horário indisponível', 409);
 });
 
+app.get('/teConflictError', () => {
+    throw new AppError('Horário já ocupado', 409);
+});
+
 app.get('/teste/not-found', () => {
     throw new NotFoundError('Barbeiro');
 });
