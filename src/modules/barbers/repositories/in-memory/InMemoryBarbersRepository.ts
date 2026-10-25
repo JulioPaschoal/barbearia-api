@@ -43,30 +43,24 @@ export class InMemoryBarbersRepository implements IBarbersRepository {
             ) ?? null
         );
     }
-
     // 🆕 "= {}" é um valor padrão: se chamar findAll() sem nada, filters vira {}
     async findAll(filters: { onlyActive?: boolean } = {}): Promise<Barber[]> {
         if (filters.onlyActive) {
             return this.barbers.filter((barber) => barber.active);
         }
-
         return [...this.barbers];
     }
-
     async update(id: string, data: UpdateBarberData): Promise<Barber> {
         const index = this.barbers.findIndex((barber) => barber.id === id);
-
         const updated: Barber = {
             ...this.barbers[index], // 1. copia tudo o que já existia
             ...data, // 2. sobrescreve só o que veio no data
             updatedAt: new Date(), // 3. atualiza a data de modificação
         };
-
         // 🆕 Se o e-mail mudou, também salvamos em minúsculas
         if (data.email) {
             updated.email = data.email.toLowerCase();
         }
-
         this.barbers[index] = updated;
         return updated;
     }

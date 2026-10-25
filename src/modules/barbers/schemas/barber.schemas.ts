@@ -23,6 +23,15 @@ const barberBaseSchema = z.object({
     endTime: timeSchema,
 });
 
+// Valida a query string: GET /barbers?active=true
+// Tudo em req.query chega como TEXTO, por isso validamos "true"/"false" como string
+export const listBarbersQuerySchema = z.object({
+    active: z
+        .enum(['true', 'false'])
+        .optional()
+        .transform((value) => value === 'true'), // "true" → true | "false" ou ausente → false
+});
+
 //CRIAÇÃO: BASE + REGRAS QUE COMPARA DOIS CAMPOS
 export const createBarberSchema = barberBaseSchema.refine(
     (data) => timeToMinutes(data.startTime) < timeToMinutes(data.endTime),

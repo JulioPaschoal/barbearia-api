@@ -1,0 +1,43 @@
+@baseUrl = http://localhost:3333
+
+### Criar barbeiro (seg a sáb, 9h às 18h)
+POST {{baseUrl}}/barbers
+Content-Type: application/json
+
+{
+  "name": "Carlos Navalha",
+  "email": "carlos@barbearia.com",
+  "phone": "11999998888",
+  "workDays": [1, 2, 3, 4, 5, 6],
+  "startTime": "09:00",
+  "endTime": "18:00"
+}
+
+### Listar todos
+GET {{baseUrl}}/barbers
+
+### Listar só ativos
+GET {{baseUrl}}/barbers?active=true
+
+### ❌ Horário invertido (deve dar 400 no campo endTime)
+POST {{baseUrl}}/barbers
+Content-Type: application/json
+
+{
+  "name": "Pedro Tesoura",
+  "email": "pedro@barbearia.com",
+  "workDays": [1, 1, 9],
+  "startTime": "18:00",
+  "endTime": "25:00"
+}
+
+### ❌ Update que quebra a regra (início depois do fim já salvo)
+PATCH {{baseUrl}}/barbers/COLE-O-ID-AQUI
+Content-Type: application/json
+
+{
+  "startTime": "19:00"
+}
+
+### Desativar
+DELETE {{baseUrl}}/barbers/COLE-O-ID-AQUI
