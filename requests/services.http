@@ -1,0 +1,39 @@
+@baseUrl = http://localhost:3333
+
+### Criar serviço
+POST {{baseUrl}}/services
+Content-Type: application/json
+
+{
+  "name": "Corte degradê",
+  "description": "Corte com máquina e tesoura",
+  "priceInCents": 4500,
+  "durationInMinutes": 30
+}
+
+### Listar serviços
+GET {{baseUrl}}/services
+
+### Buscar por ID (cole um id real)
+GET {{baseUrl}}/services/COLE-O-ID-AQUI
+
+### Atualizar
+PATCH {{baseUrl}}/services/COLE-O-ID-AQUI
+Content-Type: application/json
+
+{
+  "priceInCents": 5000
+}
+
+### Deletar
+DELETE {{baseUrl}}/services/COLE-O-ID-AQUI
+
+### ❌ Erro de validação
+POST {{baseUrl}}/services
+Content-Type: application/json
+
+{
+  "name": "Co",
+  "priceInCents": 45.5,
+  "durationInMinutes": 2
+}
