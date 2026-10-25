@@ -32,7 +32,7 @@ export const createBarberSchema = barberBaseSchema.refine(
     },
 );
 
-//
+//ATUALIZAÇÃO: PARTE DO BASE, E NãO DO CREATEBARBERSCHEMA PORQUE
 export const updateBarberSchema = barberBaseSchema.partial();
 export const barberIdParamSchema = z.object({
     id: z.uuid('ID inválido'),
